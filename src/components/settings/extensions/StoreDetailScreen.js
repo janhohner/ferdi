@@ -38,7 +38,9 @@ export default @observer class ExtensionStoreScreen extends Component {
 
   render() {
     const { intl } = this.context;
-    const { extension, isLoading, isInstalled, isInstalling, installExtension, hasErrored } = this.props;
+    const {
+      extension, isLoading, isInstalled, isInstalling, installExtension, hasErrored,
+    } = this.props;
 
     // Get most high resolution image
     const highResImage = extension.images && extension.images['128x128'];
@@ -54,7 +56,7 @@ export default @observer class ExtensionStoreScreen extends Component {
             {extension.name}
           </h1>
         </div>
-        
+
         <div className="settings__body extensions recipes">
           {isLoading ? (
             <Loader />
@@ -170,7 +172,7 @@ export default @observer class ExtensionStoreScreen extends Component {
           )}
         </div>
       </div>
-      
+
     );
   }
 }

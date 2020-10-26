@@ -48,7 +48,7 @@ export default @inject('stores', 'actions') @observer class ExtensionsStoreDetai
     this.setState({
       isLoading: true,
     });
-    
+
     webstore.detail({ id: this.props.params.extension }).then((detail) => {
       this.setState({
         detail,
@@ -78,7 +78,9 @@ export default @inject('stores', 'actions') @observer class ExtensionsStoreDetai
 
   render() {
     const { extension } = this.props.params;
-    const { detail, isLoading, isInstalling, hasErrored } = this.state;
+    const {
+      detail, isLoading, isInstalling, hasErrored,
+    } = this.state;
 
     const feature = window.ferdi.features.extensions;
     const isInstalled = feature ? feature.getActiveExtensions().includes(extension) : false;

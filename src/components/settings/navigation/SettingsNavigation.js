@@ -63,6 +63,7 @@ export default @inject('stores', 'actions') @observer class SettingsNavigation e
     }).isRequired,
     serviceCount: PropTypes.number.isRequired,
     workspaceCount: PropTypes.number.isRequired,
+    extensionsCount: PropTypes.number.isRequired,
   };
 
   static contextTypes = {
@@ -99,7 +100,9 @@ export default @inject('stores', 'actions') @observer class SettingsNavigation e
   }
 
   render() {
-    const { serviceCount, workspaceCount, stores } = this.props;
+    const {
+      serviceCount, workspaceCount, extensionsCount, stores,
+    } = this.props;
     const { isDarkThemeActive } = stores.ui;
     const { router, user } = stores;
     const { intl } = this.context;
@@ -157,6 +160,32 @@ export default @inject('stores', 'actions') @observer class SettingsNavigation e
             {intl.formatMessage(messages.account)}
           </Link>
         )}
+        <Link
+          to="/settings/extensions"
+          className="settings-navigation__link"
+          activeClassName="is-active"
+          disabled={!isLoggedIn}
+        >
+          Your extensions
+          {' '}
+          <span className="badge">{extensionsCount}</span>
+        </Link>
+        <Link
+          to="/settings/store-extensions"
+          className="settings-navigation__link"
+          activeClassName="is-active"
+          disabled={!isLoggedIn}
+        >
+          Extension-Store
+        </Link>
+        <Link
+          to="/settings/user"
+          className="settings-navigation__link"
+          activeClassName="is-active"
+          disabled={!isLoggedIn}
+        >
+          {intl.formatMessage(messages.account)}
+        </Link>
         {isUsingFranzServer && (
           <Link
             to="/settings/team"
